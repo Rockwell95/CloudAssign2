@@ -1,0 +1,22 @@
+<!--
+  Generated template for the SearchResults page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>SearchResults</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item menuClose *ngFor="let result of searchResults" (click)="viewBookInfo(result)"><span style="font-style: italic; font-weight: bold">{{result.volumeInfo.title}}</span>
+      <span [hidden]="!result.volumeInfo.authors">by</span> <span *ngFor="let author of result.volumeInfo.authors; let last = last">{{author}}{{last ? '' : ', '}}</span></button>
+  </ion-list>
+
+</ion-content>

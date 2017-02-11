@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {Http} from "@angular/http";
+import {SearchResultsPage} from "../search-results/search-results";
 
 /*
   Generated class for the BookSearch page.
@@ -18,7 +19,7 @@ import {Http} from "@angular/http";
 })
 export class BookSearchPage {
 
-  apiKey: string = 'key=AIzaSyBAEXgsrea7j7MMEJzXKxIysjvK7OTXthc';
+  apiKey: string = '&key=AIzaSyBAEXgsrea7j7MMEJzXKxIysjvK7OTXthc';
   queryString: string = 'https://www.googleapis.com/books/v1/volumes?q=';
 
   titlePrefix: string = "intitle:";
@@ -37,13 +38,13 @@ export class BookSearchPage {
   lccn: string = "";
   oclc: string = "";
 
-  c_title: string = "";
-  c_author: string = "";
-  c_publisher: string = "";
-  c_subject: string = "";
-  c_isbn: string = "";
-  c_lccn: string = "";
-  c_oclc: string = "";
+  c_title: string;
+  c_author: string;
+  c_publisher: string;
+  c_subject: string;
+  c_isbn: string;
+  c_lccn: string;
+  c_oclc: string;
 
   cQuery: string;
   nospaceQuery: string;
@@ -54,19 +55,15 @@ export class BookSearchPage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BookSearchPage');
-  }
-
   searchForBook(){
     // Generate Search Query
-    this.title === "" ? null : this.c_title = this.titlePrefix + this.title + "&";
-    this.author === "" ? null : this.c_author = this.authorPrefix + this.author + "&";
-    this.publisher === "" ? null : this.c_publisher = this.publisherPrefix + this.publisher + "&";
-    this.subject === "" ? null : this.c_subject = this.subjectPrefix + this.subject + "&";
-    this.isbn === "" ? null : this.c_isbn = this.isbnPrefix + this.isbn + "&";
-    this.lccn === "" ? null : this.c_lccn = this.lccnPrefix + this.lccn + "&";
-    this.oclc === "" ? null : this.c_oclc = this.oclcPrefix + this.oclc + "&";
+    this.title === "" ? this.c_title = "" : this.c_title = this.titlePrefix + this.title;
+    this.author === "" ? this.c_author = "" : this.c_author =  "+" + this.authorPrefix + this.author;
+    this.publisher === "" ? this.c_publisher = "" : this.c_publisher = "+" + this.publisherPrefix + this.publisher;
+    this.subject === "" ? this.c_subject = "" : this.c_subject = "+" + this.subjectPrefix + this.subject;
+    this.isbn === "" ? this.c_isbn = "" : this.c_isbn = "+" + this.isbnPrefix + this.isbn;
+    this.lccn === "" ? this.c_lccn = "" : this.c_lccn = "+" + this.lccnPrefix + this.lccn;
+    this.oclc === "" ? this.c_oclc = "" : this.c_oclc = "+" + this.oclcPrefix + this.oclc;
 
     this.cQuery = this.queryString
     + this.c_title
@@ -86,7 +83,7 @@ export class BookSearchPage {
       .subscribe(
         reply => {
           this.results = reply;
-          console.log("GOT:", this.results);
+          this.navCtrl.push(SearchResultsPage, this.results);
           //TODO: List results in separate page
         },
         error => console.warn("ERROR:", error)

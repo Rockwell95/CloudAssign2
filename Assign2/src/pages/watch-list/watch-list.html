@@ -7,12 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>WatchList</ion-title>
+    <ion-title>Your Watch List</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list>
+    <button ion-item menuClose *ngFor="let key of keys" (click)="viewWatchedBookInfo(watchList[key])"><span style="font-style: italic; font-weight: bold">{{watchList[key].title}}</span>
+      <span [hidden]="!watchList[key].authors">by</span> <span *ngFor="let author of watchList[key].authors; let last = last">{{author}}{{last ? '' : ', '}}</span></button>
+  </ion-list>
 </ion-content>

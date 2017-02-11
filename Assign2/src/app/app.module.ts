@@ -10,6 +10,8 @@ import {RegisterPage} from "../pages/register/register";
 import {DataService} from "../providers/data-service";
 import {WatchListPage} from "../pages/watch-list/watch-list";
 import {BookSearchPage} from "../pages/book-search/book-search";
+import {SearchResultsPage} from "../pages/search-results/search-results";
+import {BookInfoPage} from "../pages/book-info/book-info";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {BookSearchPage} from "../pages/book-search/book-search";
     LoginPage,
     RegisterPage,
     WatchListPage,
-    BookSearchPage
+    BookSearchPage,
+    SearchResultsPage,
+    BookInfoPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -36,7 +40,9 @@ import {BookSearchPage} from "../pages/book-search/book-search";
     LoginPage,
     RegisterPage,
     WatchListPage,
-    BookSearchPage
+    BookSearchPage,
+    SearchResultsPage,
+    BookInfoPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

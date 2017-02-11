@@ -1,14 +1,16 @@
-import {Component} from "@angular/core";
+import {Component, DoCheck} from "@angular/core";
 import {HomePage} from "../dashboard/dashboard";
 import {AboutPage} from "../about/about";
 import {ContactPage} from "../contact/contact";
 import {WatchListPage} from "../watch-list/watch-list";
 import {BookSearchPage} from "../book-search/book-search";
+import {DataService} from "../../providers/data-service";
 
 @Component({
   templateUrl: 'tabs.html'
 })
-export class TabsPage {
+export class TabsPage{
+
   // this tells the tabs component which Pages
   // should be each tab's root Page
   tab1Root: any = HomePage;
@@ -17,7 +19,9 @@ export class TabsPage {
   tab4Root: any = AboutPage;
   tab5Root: any = ContactPage;
 
-  constructor() {
+  watchListEmpty: boolean = false;
 
-  }
+  constructor() {}
+
+
 }

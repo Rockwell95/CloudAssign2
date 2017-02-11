@@ -1,17 +1,22 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Dashboard</ion-title>
+    <ion-buttons end>
+      <button ion-button solid color="default" (click)="logout()">Logout</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h2>Welcome, {{name}}</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    This is your BBookmark&trade; Dashboard, below you will find a list of all books you have indicated as read.
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-list>
+    Books you have read:
+  </ion-list>
+  <ion-list>
+    <button ion-item menuClose *ngFor="let key of keys" (click)="viewReadBookInfo(readList[key])"><span style="font-style: italic; font-weight: bold">{{readList[key].title}}</span>
+      <span [hidden]="!readList[key].authors">by</span> <span *ngFor="let author of readList[key].authors; let last = last">{{author}}{{last ? '' : ', '}}</span></button>
+  </ion-list>
 </ion-content>
