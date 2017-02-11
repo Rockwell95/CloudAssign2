@@ -12,7 +12,10 @@ import firebase from "firebase";
 export class DataService {
 
   public db: any;
-  public placesOfInterest: any;
+  public auth: any;
+  public users: any;
+  public ref: any;
+  public uid: string;
 
   constructor() {
   }
@@ -38,11 +41,11 @@ export class DataService {
 
     this.db = firebase.database();
 
-    this.db.ref('places').on('value', (data) => {
-      console.log(data.val());
-    }, (error) => {
-      console.warn(error);
-    })
+    this.auth = firebase.auth();
+
+    this.users = this.db.ref('users');
+
+    this.ref = this.db.ref();
   }
 
 }

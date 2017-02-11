@@ -8,6 +8,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {DataService} from "../providers/data-service";
+import {WatchListPage} from "../pages/watch-list/watch-list";
+import {BookSearchPage} from "../pages/book-search/book-search";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {DataService} from "../providers/data-service";
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    WatchListPage,
+    BookSearchPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -30,7 +34,9 @@ import {DataService} from "../providers/data-service";
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    WatchListPage,
+    BookSearchPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
