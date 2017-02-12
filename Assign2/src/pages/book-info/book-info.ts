@@ -114,20 +114,21 @@ export class BookInfoPage {
             let key;
             console.log('Deleting...');
             this._data.db.ref('/users/' + this._data.uid + "/readBooks").on('value', (snap) => {
-              keys = Object.keys(snap.val());
-              for (let thiskey of keys) {
-                if (snap.val()[thiskey].title === this.bookObj.title) {
-                  key = thiskey;
-                  break;
+              if (snap.val()) {
+                keys = Object.keys(snap.val());
+                for (let thiskey of keys) {
+                  if (snap.val()[thiskey].title === this.bookObj.title) {
+                    key = thiskey;
+                    break;
+                  }
                 }
+                this._data.db.ref('/users/' + this._data.uid + "/readBooks").child(key).remove().then(() => {
+                  console.log('Deleted');
+                }).catch((error) => {
+                  console.warn("Removal failed:", error.message)
+                });
               }
-              this._data.db.ref('/users/' + this._data.uid + "/readBooks").child(key).remove().then(() => {
-                console.log('Deleted');
-              }).catch((error) => {
-                console.warn("Removal failed:", error.message)
-              });
             });
-
             this.navCtrl.pop();
           }
         }

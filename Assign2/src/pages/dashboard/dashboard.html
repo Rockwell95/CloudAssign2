@@ -15,7 +15,7 @@
   <ion-list>
     Books you have read:
   </ion-list>
-  <ion-list>
+  <ion-list [hidden]="readList === undefined">
     <button ion-item menuClose *ngFor="let key of keys" (click)="viewReadBookInfo(readList[key])"><span style="font-style: italic; font-weight: bold">{{readList[key].title}}</span>
       <span [hidden]="!readList[key].authors">by</span> <span *ngFor="let author of readList[key].authors; let last = last">{{author}}{{last ? '' : ', '}}</span></button>
   </ion-list>

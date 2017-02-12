@@ -39,11 +39,22 @@ export class HomePage {
     this.navCtrl.push(BookInfoPage, {book: {volumeInfo: selectedBook}, mode: "read"});
   }
 
+  ionViewWillEnter(){
+    console.log("ACTIVE");
+    this.initializeList();
+  }
+
   initializeList(){
     this._data.db.ref('/users/' + this._data.uid + "/readBooks").on('value', (snap) => {
       console.log(snap.val());
-      this.readList = snap.val();
-      this.keys = Object.keys(snap.val());
+      if (snap.val() !== null) {
+        this.readList = snap.val();
+        this.keys = Object.keys(snap.val());
+      }
+      else{
+        this.readList = null;
+        this.keys = null;
+      }
       console.log(this.keys);
     });
   }

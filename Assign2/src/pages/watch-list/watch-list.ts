@@ -28,8 +28,14 @@ export class WatchListPage {
   ionViewWillEnter(){
     this._data.db.ref('/users/' + this._data.uid + "/watchedBooks").on('value', (snap) => {
       console.log(snap.val());
-      this.watchList = snap.val();
-      this.keys = Object.keys(snap.val());
+      if (snap.val()) {
+        this.watchList = snap.val();
+        this.keys = Object.keys(snap.val());
+      }
+      else{
+        this.watchList = null;
+        this.keys = null;
+      }
       console.log(this.keys);
     })
   }
